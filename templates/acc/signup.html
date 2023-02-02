@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block con %}
+
+    <h1><b>SIGNUP PAGE</b></h1>
+
+
+    <form method="post" enctype="multipart/form-data" name="createForm">
+        {% csrf_token %}
+        <label class="form-label mt-5">USERNAME</label>
+        <input type="text" name="uname" class="form-control">
+
+        <label class="form-label mt-4">PASSWORD</label>
+        <input type="password" name="upass" class="form-control">
+
+        <label class="form-label mt-4">CHECK PASSWORD</label>
+        <input type="password" name="ckpass" class="form-control">
+
+        <label class="form-label mt-4">AGE</label>
+        <input type="number" value="0" name="uage" class="form-control">
+
+        <label class="form-label mt-4">USERPIC</label>
+        <input type="file" name="upic" class="form-control">
+
+        <label class="form-label mt-4">COMMENT</label>
+        <textarea name="ucom" class="form-control"></textarea> 
+
+        <div class="text-end mt-4">
+            <button class="btn btn-dark btn-lg" type="button" onclick="check()">회원가입</button>
+        </div>
+    </form>
+
+ 
+    <script>
+        function check(){
+            cf = document.createForm;
+            if(!cf.uname.value){
+                alert("USERNAME 을 입력해주세요");
+            }else if(!cf.upass.value){
+                alert("PASSWORD 를 입력해주세요");
+            }else if(cf.upass.value != cf.ckpass.value){
+                alert("PASSWORD 를 확인해주세요 (불일치)");
+            }else if(cf.ucomm.value.length < 10){
+                alert("최소 10자 이상은 입력해주시기 소개해주시기 바랍니다.");
+            }else{
+                cf.submit();
+            }
+        }
+    </script>
+
+{% endblock %}
